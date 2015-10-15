@@ -121,6 +121,8 @@ class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 			throw new \RuntimeException('Invalid identifier: `' . implode('`.`', $identifiers) . '`');
 		}
 
+		$position--;
+
 		$remainder = substr($sql, $position);
 
 		return $identifiers;
