@@ -30,7 +30,6 @@ class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 				'--user "' . $options['user'] . '"',
 				'--password "' . $options['pass'] . '"',
 				'--alter "' . addslashes($alter_statement) . '"',
-				'--no-drop-old-table',
 				'--execute',
 				'--charset=' . $options['charset'],
 				'D=' . $database . ',t=' . $table . '',
