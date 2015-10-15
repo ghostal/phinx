@@ -2,6 +2,8 @@
 
 namespace Phinx\Db\Adapter;
 
+use Symfony\Component\Console\Output\OutputInterface;
+
 class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 {
 	public function execute($sql)
@@ -34,6 +36,7 @@ class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 				'--charset=' . $options['charset'],
 			]);
 
+			$this->output->writeln($cmd);
 			exec($cmd);
 		} else {
 			parent::execute($sql);
