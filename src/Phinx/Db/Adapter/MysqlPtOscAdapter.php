@@ -27,13 +27,13 @@ class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 
 			$cmd = implode(' ', [
 				'pt-online-schema-change',
-				'--user ' . $options['user'],
-				'--password ' . $options['pass'],
-				'--alter "' . $alter_statement . '"',
+				'--user "' . $options['user'] . '"',
+				'--password "' . $options['pass'] . '"',
+				'--alter "' . addslashes($alter_statement) . '"',
 				'--no-drop-old-table',
 				'--execute',
-				'D=`' . $database . '`,t=`' . $table . '`',
 				'--charset=' . $options['charset'],
+				'D=' . $database . ',t=' . $table . '',
 			]);
 
 			$this->output->writeln($cmd);
