@@ -36,7 +36,11 @@ class MysqlPtOscAdapter extends MysqlAdapter implements AdapterInterface
 			]);
 
 			$this->output->writeln($cmd);
-			exec($cmd);
+			exec($cmd, $output, $return);
+
+			if ($return != 0) {
+				throw new \RuntimeException('pt-online-schema-change returned ' . $return);
+			}
 		} else {
 			parent::execute($sql);
 		}
